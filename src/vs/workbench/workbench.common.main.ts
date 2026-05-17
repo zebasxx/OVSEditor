@@ -165,6 +165,8 @@ import { McpGalleryService } from '../platform/mcp/common/mcpGalleryService.js';
 import { AllowedMcpServersService } from '../platform/mcp/common/allowedMcpServersService.js';
 import { IWebWorkerService } from '../platform/webWorker/browser/webWorkerService.js';
 import { WebWorkerService } from '../platform/webWorker/browser/webWorkerServiceImpl.js';
+import { IExtensionsWorkbenchService } from './contrib/extensions/common/extensions.js';
+import { ExtensionsWorkbenchService } from './contrib/extensions/browser/extensionsWorkbenchService.js';
 
 registerSingleton(IUserDataSyncLogService, UserDataSyncLogService, InstantiationType.Delayed);
 registerSingleton(IAllowedExtensionsService, AllowedExtensionsService, InstantiationType.Delayed);
@@ -182,6 +184,7 @@ registerSingleton(IOpenerService, OpenerService, InstantiationType.Delayed);
 registerSingleton(IWebWorkerService, WebWorkerService, InstantiationType.Delayed);
 registerSingleton(IMcpGalleryService, McpGalleryService, InstantiationType.Delayed);
 registerSingleton(IAllowedMcpServersService, AllowedMcpServersService, InstantiationType.Delayed);
+registerSingleton(IExtensionsWorkbenchService, ExtensionsWorkbenchService, InstantiationType.Delayed);
 
 //#endregion
 
