@@ -72,6 +72,11 @@ docker run --rm -t \
 		sudo -u node git config --global --add safe.directory /work/repo
 		sudo -u node npm install
 		sudo -u node npm run gulp vscode-linux-$ARCH-min
+		rm -rf \"/work/VSCode-linux-$ARCH/resources/app/extensions/copilot\"
+		rm -rf \"/work/VSCode-linux-$ARCH/resources/app/node_modules/@github/copilot\"
+		rm -rf \"/work/VSCode-linux-$ARCH/resources/app/node_modules/@github/copilot-sdk\"
+		rm -rf \"/work/VSCode-linux-$ARCH/resources/app/node_modules/@vscode/copilot-api\"
+		rm -rf \"/work/VSCode-linux-$ARCH/resources/app/out/vs/platform/agentHost\"
 		APP_NAME=\"\$(node -p \"require('./product.json').applicationName\")\"
 		TUNNEL_APP_NAME=\"\$(node -p \"require('./product.json').tunnelApplicationName\")\"
 		if [ ! -e \"/work/VSCode-linux-$ARCH/bin/\$TUNNEL_APP_NAME\" ]; then
