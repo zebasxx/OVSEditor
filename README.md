@@ -129,48 +129,84 @@ After that, we can either:
 
 The pull request route is safer because the source import is very large.
 
-### 3. Build unmodified Code - OSS
+### 3. Build unmodified Code - OSS in Docker
 
 Do this before changing branding or removing features. It proves the base source
-and local machine are healthy.
+is healthy while keeping the Node runtime and native build dependencies out of
+the host machine.
 
-Install and use the Node version requested by the VS Code repo. The upstream docs
-recommend `fnm`, but `nvm` also works.
+Preferred host requirements:
 
-With `fnm`:
+- Docker
+- VS Code with the Dev Containers extension, or the standalone Dev Container CLI
 
-```bash
-fnm use
+The Code - OSS repository already includes a `.devcontainer` setup, so after the
+upstream source has been imported we should use that instead of installing the
+toolchain directly on the host.
+
+#### Option A: VS Code Dev Containers
+
+Open the imported Code - OSS branch in VS Code and run:
+
+```text
+Dev Containers: Reopen in Container
 ```
 
-Or with `nvm`:
+That builds and opens the repository inside the Docker container described by the
+upstream `.devcontainer` files.
 
-```bash
-nvm use
-```
-
-Then install dependencies:
+Then, from a terminal inside the container:
 
 ```bash
 npm install
-```
-
-Start the development build watcher:
-
-```bash
 npm run watch
 ```
 
 Wait until the terminal says the initial compilation finished. Keep this process
 running.
 
-In a second terminal, launch the desktop app:
+This proves the source compiles without installing Node or native build packages
+on the host.
+
+#### Option B: Dev Container CLI
+
+If we want to do it without clicking through VS Code, install the Dev Container
+CLI once and let it drive Docker:
+
+```bash
+npm install -g @devcontainers/cli
+devcontainer up --workspace-folder .
+devcontainer exec --workspace-folder . npm install
+devcontainer exec --workspace-folder . npm run watch
+```
+
+That still installs the project dependencies inside the container, not on the
+host.
+
+#### Running the app
+
+The pure compile check should happen inside Docker first. Running the Electron
+desktop UI from Docker is possible, but it requires extra display forwarding
+setup for X11 or Wayland.
+
+For the first milestone we should treat this as enough:
+
+- container builds successfully
+- `npm run watch` completes initial compilation
+- no host Node/npm dependency setup is needed
+
+After that, we can choose one of two run strategies:
+
+- run a web/server variant from the container for quick UI checks
+- add Linux display forwarding to run the Electron desktop app from Docker
+
+If we later decide to run the desktop app directly on the host, the command is:
 
 ```bash
 ./scripts/code.sh
 ```
 
-If the app opens as Code - OSS, the baseline build works.
+But that should be optional, not the default setup path.
 
 ### 4. Rebrand the product metadata
 
