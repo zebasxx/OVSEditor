@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="OVS Editor icon">
+	<defs>
+		<linearGradient id="bg" x1="164" y1="112" x2="860" y2="912" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#11202a"/>
+			<stop offset="1" stop-color="#172b34"/>
+		</linearGradient>
+		<linearGradient id="ribbon" x1="150" y1="182" x2="858" y2="855" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#29d3ff"/>
+			<stop offset="0.45" stop-color="#1596d3"/>
+			<stop offset="1" stop-color="#0d5f91"/>
+		</linearGradient>
+		<linearGradient id="ribbon-dark" x1="340" y1="222" x2="762" y2="870" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#075275"/>
+			<stop offset="1" stop-color="#083a56"/>
+		</linearGradient>
+		<linearGradient id="paper" x1="420" y1="252" x2="766" y2="772" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#fff9ea"/>
+			<stop offset="1" stop-color="#e8f7ff"/>
+		</linearGradient>
+		<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+			<feDropShadow dx="0" dy="32" stdDeviation="36" flood-color="#00131c" flood-opacity="0.38"/>
+		</filter>
+	</defs>
+	<rect x="64" y="64" width="896" height="896" rx="210" fill="url(#bg)"/>
+	<g filter="url(#shadow)" transform="translate(-74 -86) scale(1.15)">
+		<path d="M204 512 420 282c34-36 89-43 131-18l214 128c37 22 60 62 60 105v210c0 64-70 104-125 71L475 642 324 801c-26 27-70 9-70-29V655L154 591c-37-24-42-77-12-109l62-65v95Z" fill="url(#ribbon)"/>
+		<path d="M420 282 204 512l120 78 151-160 290 177V497L551 264c-42-25-97-18-131 18Z" fill="#5be6ff" opacity="0.24"/>
+		<path d="M475 642 700 778c55 33 125-7 125-71V497L671 613l-196-119v148Z" fill="url(#ribbon-dark)" opacity="0.92"/>
+		<path d="M424 294 254 474l124 79 154-164-108-95Z" fill="#dff9ff" opacity="0.18"/>
+		<path d="M432 312h224c44 0 80 36 80 80v300c0 44-36 80-80 80H432c-44 0-80-36-80-80V392c0-44 36-80 80-80Z" fill="url(#paper)"/>
+		<path d="M432 312h72v460h-72c-44 0-80-36-80-80V392c0-44 36-80 80-80Z" fill="#cfefff"/>
+		<path d="M560 438h116c18 0 32 14 32 32s-14 32-32 32H560c-18 0-32-14-32-32s14-32 32-32Zm0 116h116c18 0 32 14 32 32s-14 32-32 32H560c-18 0-32-14-32-32s14-32 32-32Zm0 116h76c18 0 32 14 32 32s-14 32-32 32h-76c-18 0-32-14-32-32s14-32 32-32Z" fill="#173443" opacity="0.86"/>
+		<path d="M350 618 210 528l140-149v239Z" fill="#ffb347"/>
+		<path d="M350 618 254 556l96-103v165Z" fill="#ff7a45"/>
+	</g>
+</svg>
