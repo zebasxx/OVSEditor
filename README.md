@@ -1,3 +1,47 @@
+# OVS Editor
+
+OVS Editor is currently a downstream build of Code - OSS that is being reduced
+into a focused text editor with Explorer, Search, and Source Control.
+
+## Ubuntu `.deb` Package
+
+Build an Ubuntu/Debian package through Docker:
+
+```bash
+./scripts/docker-build-deb.sh
+```
+
+The package is written to:
+
+```text
+.build/artifacts/deb/
+```
+
+Install it locally with:
+
+```bash
+sudo apt install ./.build/artifacts/deb/*.deb
+```
+
+The installed command is:
+
+```bash
+ovs-editor
+```
+
+To build for another supported Linux architecture:
+
+```bash
+./scripts/docker-build-deb.sh arm64
+./scripts/docker-build-deb.sh armhf
+```
+
+The build uses Docker volumes for the heavy workspace and npm cache, so Node,
+native build dependencies, and generated `node_modules` folders stay out of the
+host checkout.
+
+---
+
 # Visual Studio Code - Open Source ("Code - OSS")
 [![Feature Requests](https://img.shields.io/github/issues/microsoft/vscode/feature-request.svg)](https://github.com/microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc)
 [![Bugs](https://img.shields.io/github/issues/microsoft/vscode/bug.svg)](https://github.com/microsoft/vscode/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
