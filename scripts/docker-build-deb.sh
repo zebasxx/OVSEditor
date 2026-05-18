@@ -37,10 +37,8 @@ docker run --rm -t \
 	-v "$NPM_CACHE_VOLUME:/home/node/.npm" \
 	-w /work/repo \
 	"$IMAGE" \
-		bash --noprofile --norc -c "
-			set -euo pipefail
-			export TMPDIR=/work/tmp
-			export VSCODE_SYSROOT_DIR=/work/vscode-$DEB_ARCH-sysroot
+	bash --noprofile --norc -c "
+		set -euo pipefail
 
 		apt-get update
 		apt-get install -y \
@@ -58,7 +56,7 @@ docker run --rm -t \
 			python-is-python3 \
 			rsync
 
-			mkdir -p /work/repo /home/node/.npm \"\$TMPDIR\" \"\$VSCODE_SYSROOT_DIR\"
+		mkdir -p /work/repo /home/node/.npm
 		chown -R node:node /work /home/node/.npm
 
 		rsync -a --delete \
@@ -79,8 +77,6 @@ docker run --rm -t \
 		rm -rf \"/work/VSCode-linux-$ARCH/resources/app/node_modules/@github/copilot-sdk\"
 		rm -rf \"/work/VSCode-linux-$ARCH/resources/app/node_modules/@vscode/copilot-api\"
 		rm -rf \"/work/VSCode-linux-$ARCH/resources/app/out/vs/platform/agentHost\"
-		rm -rf \"/work/VSCode-linux-$ARCH/resources/app/out/vs/workbench/contrib/welcomeOnboarding\"
-		rm -rf \"/work/VSCode-linux-$ARCH/resources/app/out/vs/workbench/contrib/remoteCodingAgents\"
 		APP_NAME=\"\$(node -p \"require('./product.json').applicationName\")\"
 		TUNNEL_APP_NAME=\"\$(node -p \"require('./product.json').tunnelApplicationName\")\"
 		if [ ! -e \"/work/VSCode-linux-$ARCH/bin/\$TUNNEL_APP_NAME\" ]; then

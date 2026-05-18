@@ -85,23 +85,7 @@ interface IMcpRegistryResponse {
 	readonly mcp_registries: ReadonlyArray<IMcpRegistryProvider>;
 }
 
-function toDefaultAccountConfig(defaultChatAgent: IDefaultChatAgent | undefined): IDefaultAccountConfig {
-	if (!defaultChatAgent) {
-		return {
-			preferredExtensions: [],
-			authenticationProvider: {
-				default: { id: '', name: '' },
-				enterprise: { id: '', name: '' },
-				enterpriseProviderConfig: '',
-				enterpriseProviderUriSetting: '',
-				scopes: [],
-			},
-			entitlementUrl: '',
-			tokenEntitlementUrl: '',
-			mcpRegistryDataUrl: '',
-		};
-	}
-
+function toDefaultAccountConfig(defaultChatAgent: IDefaultChatAgent): IDefaultAccountConfig {
 	return {
 		preferredExtensions: [
 			defaultChatAgent.chatExtensionId,
