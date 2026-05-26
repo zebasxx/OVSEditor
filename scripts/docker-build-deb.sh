@@ -9,6 +9,11 @@ NPM_CACHE_VOLUME="${OVS_EDITOR_NPM_CACHE_VOLUME:-ovs-editor-npm-cache}"
 ARTIFACT_DIR="$ROOT/.build/artifacts/deb"
 HOST_UID="$(id -u)"
 HOST_GID="$(id -g)"
+DOCKER_TTY_ARGS=()
+
+if [ -t 1 ]; then
+	DOCKER_TTY_ARGS=(-t)
+fi
 
 case "$ARCH" in
 	x64) DEB_ARCH="amd64" ;;
@@ -26,7 +31,7 @@ rm -f "$ARTIFACT_DIR"/ovs-editor_*_"$DEB_ARCH".deb
 docker volume create "$WORKSPACE_VOLUME" >/dev/null
 docker volume create "$NPM_CACHE_VOLUME" >/dev/null
 
-docker run --rm -t \
+docker run --rm "${DOCKER_TTY_ARGS[@]}" \
 	-e "VSCODE_ARCH=$ARCH" \
 	-e "npm_config_arch=$ARCH" \
 	-e "HOST_UID=$HOST_UID" \

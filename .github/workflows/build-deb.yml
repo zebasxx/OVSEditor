@@ -1,0 +1,43 @@
+name: Build OVS Editor Debian Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      arch:
+        description: Linux architecture to build
+        required: true
+        default: x64
+        type: choice
+        options:
+          - x64
+          - arm64
+          - armhf
+
+permissions:
+  contents: read
+
+jobs:
+  build-deb:
+    name: Build .deb (${{ inputs.arch }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          lfs: true
+
+      - name: Build Debian package
+        env:
+          OVS_EDITOR_WORKSPACE_VOLUME: ovs-editor-workspace-${{ github.run_id }}-${{ github.run_attempt }}
+          OVS_EDITOR_NPM_CACHE_VOLUME: ovs-editor-npm-cache-${{ github.run_id }}-${{ github.run_attempt }}
+        run: ./scripts/docker-build-deb.sh "${{ inputs.arch }}"
+
+      - name: Upload Debian package
+        uses: actions/upload-artifact@v5
+        with:
+          name: ovs-editor-deb-${{ inputs.arch }}
+          path: .build/artifacts/deb/*.deb
+          if-no-files-found: error
+          retention-days: 30

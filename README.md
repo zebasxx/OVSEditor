@@ -40,6 +40,10 @@ The build uses Docker volumes for the heavy workspace and npm cache, so Node,
 native build dependencies, and generated `node_modules` folders stay out of the
 host checkout.
 
+You can also build the package on GitHub. Open the repository's **Actions** tab,
+run **Build OVS Editor Debian Package**, and download the `ovs-editor-deb-*`
+artifact from the completed workflow run.
+
 ---
 
 # Visual Studio Code - Open Source ("Code - OSS")
